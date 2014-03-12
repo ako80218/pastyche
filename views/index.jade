@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .row
+    .col-sm-12.top-bar
+        h1.col-sm-3= title
+        a.btn.btn-default.user-btn(href='/auth/google') Login with Google+
+        a.btn.btn-default.user-btn(href='/login/facebook') Login with Facebook
+        a.btn.btn-default.user-btn(href='/login/twitter') Login with Twitter
+       
+    

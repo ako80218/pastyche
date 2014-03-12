@@ -1,0 +1,17 @@
+extends layout
+
+block content
+   .row
+    .col-sm-12.top-bar
+        h1.col-sm-3= title
+    .col-sm-4.col-sm-offset-4
+      form(action="/register" method="post")
+        .form-group
+          label Email
+          input(type="text" class="form-control" name="email")
+        .form-group
+          label Password
+          input(type="password" class="form-control" name="password")
+        button.btn.btn-warning.btn-lg(type='submit') Register
+        p Already have an account? 
+                a(href='/login') Login.
