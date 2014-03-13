@@ -30,7 +30,7 @@ var compile = function(str, path){
     .import("nib");
 }
 // all environments
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 1337);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -58,8 +58,8 @@ if ('development' == app.get('env')) {
 app.get('/', indexController.index);
 app.get('/login', authController.login);
 app.get('/register', authController.register);
-app.get('/user/:user', authController.ensureAuthenticated, userController.userProfile);
-// app.get('/users', user.list);
+app.get('/user/:id', authController.ensureAuthenticated, userController.userProfile);
+app.get('/profile/:userSlug', authController.ensureAuthenticated, userController.userView);
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/userinfo.profile',
                                             'https://www.googleapis.com/auth/userinfo.email'] }),

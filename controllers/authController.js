@@ -3,17 +3,14 @@ var UserModel = require('../models/userModel.js');
 module.exports ={
     login: function(req, res){
         if (req.isAuthenticated()){
-            
-            console.log('req.params.user.id: AUTHC CONTROLLER ', req.params.user.id);
-            res.redirect('/user/' + req.params.user.id);
+            res.redirect('/user');
         }
         res.render('login.jade', {
             title:'Login'
         });
     },
     loginSuccess: function(req,res){
-         console.log('req.params.user:       ', req.params.user);
-            res.redirect('/user/' + req.params.user);
+            res.redirect('/user/' +req.user._id);
     },
     logout: function(req, res){
         req.logout();
