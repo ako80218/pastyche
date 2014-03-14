@@ -22,3 +22,18 @@ a {
 .img-small {
   width: 200px;
 }
+.background-image {
+  width: 100%;
+}
+.background,
+.content {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.background {
+  width: 100%;
+  height: 100%;
+/*background-image: url('images/originals/015.jpg');*/
+  background-repeat: no-repeat;
+}

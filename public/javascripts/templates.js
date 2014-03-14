@@ -184,6 +184,17 @@ jade.render = function(node, template, data) {
   node.innerHTML = tmp;
 };
 
+jade.templates["pastyche-background"] = function(locals, attrs, escape, rethrow, merge) {
+attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+var buf = [];
+with (locals || {}) {
+var interp;
+buf.push('<img');
+buf.push(attrs({ 'id':('pastiche-background'), 'src':('http://farm' + (farm) + '.staticflickr.com/' + (server) + '/' + (id) + '_' + (secret) + '.jpg'), "class": ('background-image') }, {"src":true}));
+buf.push('/>');
+}
+return buf.join("");
+}
 jade.templates["pastyche"] = function(locals, attrs, escape, rethrow, merge) {
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];

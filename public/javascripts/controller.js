@@ -1,5 +1,6 @@
 $(function(){
-    console.log("LOADED!")
+    // console.log("LOADED!");
+    
 $('#photo-search-button').on('click', function(e){
     e.preventDefault();
     var searchTerm = $(this).siblings('div').children('#photo-search-input').val();
@@ -14,6 +15,7 @@ $('#photo-search-button').on('click', function(e){
             //     obj.photo.push(data.photo[index]);
             //     });
             // console.log("AJAX Success!!");
+            random
             jade.render($('#pastyche')[0], 'pastyche', data);
             
 

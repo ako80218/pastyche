@@ -5,6 +5,7 @@ html
     link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/main.css')
   body
+    #background.background
     .container
         .row
             .navbar.navbar-inverse.navbar-fixed-top
@@ -45,9 +46,9 @@ html
                                 li
                                     a(href='/login/twitter') Login:
                                         img.icon(src='images/icons/twitter.png')
-        block content
+            block content
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js")    
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
     script(src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js")
-    script(src="/javascripts/controller.js")
+    script(src="/javascripts/main.js")
     script(src="/javascripts/templates.js")
