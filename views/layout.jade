@@ -5,37 +5,49 @@ html
     link(href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css", rel="stylesheet")
     link(rel='stylesheet', href='/stylesheets/main.css')
   body
-    .navbar.navbar-inverse.navbar-fixed-top
-        .container-fluid
-            //-Brand and toggle get grouped for better mobile display
-            .navbar-header
-                button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
-                    span.sr-only Toggle navigation
-                    span.icon-bar
-                    span.icon-bar
-                    span.icon-bar
-                a.navbar-brand(href='/')= title
-                    
-                
-            //-Collect the nav links, forms, and other content for toggling
-            .collapse.navbar-collapse
-                ul.nav.navbar-nav.navbar-right
-                    if user
-                        li
-                            a(href='/save') Save Pastyche
-                        li
-                            a(href='/logout') Logout
-                    else
-                        li
-                            a(href='/auth/google') Login with Google+
-                                img.icon(src='images/icons/googleplus.png')
-                        li
-                            a(href='/login/facebook') Login with Facebook
-                                img.icon(src='images/icons/facebook.png')
-                        li
-                            a(href='/login/twitter') Login with Twitter
-                                img.icon(src='images/icons/twitter.png')
-                
-    block content
+    .container
+        .row
+            .navbar.navbar-inverse.navbar-fixed-top
+                .container-fluid
+                    //-Brand and toggle get grouped for better mobile display
+                    .navbar-header
+                        button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse")
+                            span.sr-only Toggle navigation
+                            span.icon-bar
+                            span.icon-bar
+                            span.icon-bar
+                        a.navbar-brand(href='/')= title
+                            
+                        
+                    //-Collect the nav links, forms, and other content for toggling
+                    .collapse.navbar-collapse
+                        form.navbar-form.navbar-left(role='search')
+                            .form-group.input-group-sm
+                                input#photo-search-input.form-control.nav-search(type="text" placeholder="Search")
+                            button#photo-search-button.btn.btn-default.btn-sm(type="submit") Go!
+                        ul.nav.navbar-nav.navbar-right
+                            if user
+                                li
+                                    p.navbar-text Hey #{user.userDisplayName} !
+                                li
+                                    a(href='/profile/#{user.userSlug}') My Profile                        
+                                li
+                                    a(href='/save') Save Pastyche
+                                li
+                                    a(href='/logout') Logout
+                            else
+                                li
+                                    a(href='/auth/google') Login:
+                                        img.icon(src='images/icons/googleplus.png')
+                                li
+                                    a(href='/login/facebook') Login:
+                                        img.icon(src='images/icons/facebook.png')
+                                li
+                                    a(href='/login/twitter') Login:
+                                        img.icon(src='images/icons/twitter.png')
+        block content
     script(src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js")    
     script(src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js")
+    script(src="/javascripts/controller.js")
+    script(src="/javascripts/templates.js")

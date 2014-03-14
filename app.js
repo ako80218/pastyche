@@ -18,6 +18,7 @@ mongoose.connect('mongodb://localhost/pastyche');
 var indexController =require('./controllers/indexController.js');
 var authController = require('./controllers/authController.js');
 var userController = require('./controllers/userController.js');
+var photosController = require('./controllers/photosController.js');
 var passportConfig=require('./config/passport');
 
 var app = express();
@@ -90,6 +91,7 @@ app.get(
 );
 
 app.get('/logout', authController.logout);
+app.get('/search', photosController.search);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

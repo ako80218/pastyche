@@ -5,9 +5,10 @@ module.exports = {
         res.redirect('/profile/' + req.user.userSlug);
     },
     userView: function(req,res){
-        res.render('profile.jade', {
-            title: 'Pastyche',
-            user: req.user});
+        res.render('index.jade', {
+            title:'Pastyche',
+            user: req.user
+        });
     }
 
 };
