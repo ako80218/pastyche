@@ -13,6 +13,13 @@ module.exports ={
     });
         // console.log("results: ", results);
         
+    },
+    tagLookUp: function(req, res){
+        console.log("req.query", req.query);
+        var results = flickr.get("photos.getInfo", {"photo_id":req.query},
+            function(result){
+                res.send(result);
+        });
     }
 
 

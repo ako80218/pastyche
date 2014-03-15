@@ -190,8 +190,8 @@ var buf = [];
 with (locals || {}) {
 var interp;
 buf.push('<img');
-buf.push(attrs({ 'id':('pastiche-background'), 'src':('http://farm' + (farm) + '.staticflickr.com/' + (server) + '/' + (id) + '_' + (secret) + '.jpg'), "class": ('background-image') }, {"src":true}));
-buf.push('/>');
+buf.push(attrs({ 'id':('pastiche-background'), 'src':('http://farm' + (farm) + '.staticflickr.com/' + (server) + '/' + (id) + '_' + (secret) + '_b.jpg'), "class": ('background-image') }, {"src":true}));
+buf.push('/><div id="shade" class="shade"></div>');
 }
 return buf.join("");
 }

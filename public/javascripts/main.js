@@ -14,17 +14,7 @@ $(function(){
 
     //     return newObj
     // }
-    
-    ///////////////////////////// VIEW
-//This function takes the imagePath of the randomly selected photo object from the pastiche 
-//and assigns it to the background of the #background div element
-    var randomBackground = function(path){
-        $("#background").empty().hide();
-        $("#background").append('<img id="pastyche-background" class="background-image" src="">');
-        $("#pastyche-background").attr('src', path);
-        $("#background").fadeIn(1000);
-        $('#pastyche-background').fadeIn();
-    };
+        ///////////////////////////// VIEW
     
     //////////////////////////// CONTROL
     
@@ -35,18 +25,26 @@ $('#photo-search-button').on('click', function(e){
     $.ajax('/search', {
         data: {searchTerm:searchTerm},
         success: function(data){
-            // var x = Math.floor((data.photo.length)/10);
-            //     var obj={photo: []};
-            // _(x).times(function(){
-            //     var index =_.random(data.photo.length);
-            //     obj.photo.push(data.photo[index]);
-            //     });
-            // console.log("AJAX Success!!");
             var selectedPhoto   = randomSelectOne(data.photo);
             jade.render($('#pastyche')[0], 'pastyche', data);
              $("#background").empty().hide();
+             console.log("selectedPhoto: ", selectedPhoto);
             jade.render($('#background')[0], 'pastyche-background', selectedPhoto);
-            $('#background').fadeIn();
+            $('#background').fadeIn(600);
+            $('#navbar-header').append('<ul class="nav navbar-nav"><li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags"></span></a></li>');
+            $(document).on('click',  '#tags-link', function(e){
+                e.preventDefault();
+                var idsString = _.pluck(data.photo, 'id').join('?');
+                $('#tag-cloud').toggleClass('col-sm-3');
+                $('#pastyche').toggleClass('col-sm-9');
+                $('#pastyche').toggleClass('col-sm-12');
+                $.ajax('/photo-tags',{
+                    data:idsString,
+                    success: function(data){
+                        console.log('Success!!');
+                    }
+                })
+            });
             
 
 
