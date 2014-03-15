@@ -7,6 +7,7 @@ $(function(){
          var selectedIndex = Math.floor(Math.random() * (arr.length));
         return arr[selectedIndex];
     };
+    var savedPastycheData=[];
     //This function forms an object to feed the template it takes an object as its argument
     // var templateData = function(obj, key, arr){
     //     var newObj=_.pick(obj, key);
@@ -25,6 +26,7 @@ $('#photo-search-button').on('click', function(e){
     $.ajax('/search', {
         data: {searchTerm:searchTerm},
         success: function(data){
+            savedPastycheData=data.photo;
             var selectedPhoto   = randomSelectOne(data.photo);
             jade.render($('#pastyche')[0], 'pastyche', data);
              $("#background").empty().hide();
@@ -45,10 +47,15 @@ $('#photo-search-button').on('click', function(e){
                     }
                 })
             });
-            
-
-
         }
     })
 });
+    $('#save-pastyche').on('click', function(e){
+        e.preventDefault();
+        console.log("SAVE CLICKED");
+        $.ajax('/save', {
+            type:'post',
+            data: {savedPastycheData : savedPastycheData}
+        });
+    });
 });

@@ -5,10 +5,19 @@ module.exports = {
         res.redirect('/profile/' + req.user.userSlug);
     },
     userView: function(req,res){
+        UserModel.find({_id:req.user._id}).populate('pastyches')
+        .exec(function(err,doc){
+            
+            console.log("DOC:  ",doc);
+        });
         res.render('index.jade', {
             title:'Pastyche',
             user: req.user
-        });
+            });
+
+        
+        console.log("req.user:  9", req.user);
+        
     }
 
 };

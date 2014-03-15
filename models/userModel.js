@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 var userSchema = new mongoose.Schema({
     userId: String,
     userName: String,
     userDisplayName: String,
     userSlug: String,
-    profile: Object
+    pastyches: [{type:Schema.ObjectId, 
+            ref:'PastycheModel'
+    }],
+    profile: {}
 });
 var passportLocalMongoose = require('passport-local-mongoose');
 userSchema.plugin(passportLocalMongoose);

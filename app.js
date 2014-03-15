@@ -93,6 +93,7 @@ app.get(
 app.get('/logout', authController.logout);
 app.get('/search', photosController.search);
 app.get('/photo-tags', photosController.tagLookUp);
+app.post('/save', photosController.savePastyche);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
