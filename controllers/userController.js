@@ -1,22 +1,22 @@
 var UserModel = require('../models/userModel.js');
+// var PastycheModel = require('../models/pastycheModel.js');
 module.exports = {
     userProfile: function(req,res){
         // console.log("req.user: ", req.user);
         res.redirect('/profile/' + req.user.userSlug);
     },
     userView: function(req,res){
-        UserModel.find({_id:req.user._id}).populate('pastyches')
-        .exec(function(err,doc){
-            
+        UserModel.find({_id:req.user._id}).populate('pastyches').exec(function(err,doc){
             console.log("DOC:  ",doc);
-        });
-        res.render('index.jade', {
-            title:'Pastyche',
-            user: req.user
-            });
+            res.send(doc);
 
-        
-        console.log("req.user:  9", req.user);
+        });
+        // res.render('index.jade', {
+        //     title:'Pastyche',
+        //     user: req.user
+        //     });
+
+
         
     }
 

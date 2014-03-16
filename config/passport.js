@@ -43,7 +43,7 @@ passport.use(new GoogleStrategy({
 ));
 passport.use(new FacebookStrategy({
     clientID:ApiValues.facebookClientID,
-    clientSecret: ApiValues.faccebookClientSecret,
+    clientSecret: ApiValues.facebookClientSecret,
     callbackURL: 'http://localhost:1337/facebook/callback'
 },
   function(accessToken, refreshToken, profile, done){
