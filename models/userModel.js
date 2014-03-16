@@ -1,13 +1,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var PastycheModel = mongoose.model('PastycheModel');
+var PastycheModel = require('./pastycheModel.js');
 var userSchema = new mongoose.Schema({
     userId: String,
     userName: String,
     userDisplayName: String,
     userSlug: String,
-    pastyches: [{type:Schema.ObjectId, 
-    ref:'PastycheModel'
+    pastyches: [{type:Schema.Types.ObjectId, 
+    ref:'Pastyche'
     }],
     profile: {}
 });
