@@ -208,7 +208,7 @@ buf.push('<ul class="list-inline list-unstyled">');
       var image = photo[$index];
 
 buf.push('<li><image');
-buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '.jpg'), "class": ('img-thumbnail') + ' ' + ('img-small') }, {"src":true}));
+buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '.jpg'), 'data-id':('' + (image.id) + ''), "class": ('img-thumbnail') + ' ' + ('img-small') }, {"src":true,"data-id":true}));
 buf.push('></image></li>');
     }
   } else {
@@ -216,7 +216,7 @@ buf.push('></image></li>');
       var image = photo[$index];
 
 buf.push('<li><image');
-buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '.jpg'), "class": ('img-thumbnail') + ' ' + ('img-small') }, {"src":true}));
+buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '.jpg'), 'data-id':('' + (image.id) + ''), "class": ('img-thumbnail') + ' ' + ('img-small') }, {"src":true,"data-id":true}));
 buf.push('></image></li>');
    }
   }

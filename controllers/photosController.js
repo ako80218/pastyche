@@ -16,11 +16,11 @@ module.exports ={
         
     },
     tagLookUp: function(req, res){
-        console.log("req.query", req.query);
-        var results = flickr.get("photos.getInfo", {"photo_id":req.query},
+        console.log("REQ.QUERY: ", req.query);
+        var results = flickr.get("tags.getListPhoto", {"photo_id":req.query.id},
             function(result){
                 res.send(result);
-        });
+            });
     },
     savePastyche: function(req, res){
         console.log("req.user:  ", req.user);
