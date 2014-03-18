@@ -1,4 +1,6 @@
+var test;
 $(function(){
+$('#tag-cloud').hide();
     // console.log("LOADED!");
     // 
     ///////////////////////////// MODEL
@@ -7,7 +9,17 @@ $(function(){
          var selectedIndex = Math.floor(Math.random() * (arr.length));
         return arr[selectedIndex];
     };
-    var pastycheArray=[];
+    var setTagWeights = function(arr){
+        var tagWeights ={};
+        var maxValue;
+        for(var i =0; i<arr.length; i++){
+            maxValue=arr[0].count;
+            var tagWeight=(arr[i].count)/maxValue;
+            var tagFontSize=tagWeight> 0.2 ? (((tagWeight)*3.0).toFixed(1)).toString() + 'em' : '1em';
+            tagWeights[arr[i].tag] = tagFontSize;
+        }
+            return tagWeights;
+}
     var pastycheObject ={};
 ///////////////////////////// VIEW
 //This function assembles the tags link element and places it in the nav bar        
@@ -25,11 +37,31 @@ $('#photo-search-button').on('click', function(e){
         data: {searchTerm:searchTerm},
         success: function(data){
             pastycheObject=data;
-            pastycheArray=data.photo;
-            var selectedPhoto=randomSelectOne(pastycheObject.photo);
+            pastycheObject.backgroundPhoto=randomSelectOne(pastycheObject.photo);
+            pastycheObject.allTags=[];
+            // console.log("pastycheObject.photo: ",pastycheObject.photo);
+            _.each(pastycheObject.photo, function(obj){
+                return pastycheObject.allTags.push(obj.tags.split(' '));
+            });
+           var tagCounts= _.chain(pastycheObject.allTags).flatten().countBy(function(tag){
+                return tag;
+            }).value();
+           var tagArray=[];
+           for (var i in tagCounts){
+                tagArray.push({tag:i,count:tagCounts[i]})
+            } 
+            tagArray = _.chain(tagArray).sortBy(function(tag){
+                return tag.count
+
+            }).last(50).value().reverse();
+            var tagTemplateObj={};
+            tagTemplateObj.weights=setTagWeights(tagArray);
+            tagTemplateObj.tags=_.keys(tagTemplateObj.weights);
+            // $('#tag-cloud').hide();
+            jade.render($('#tag-cloud')[0], 'tag-cloud-template', tagTemplateObj);
             jade.render($('#pastyche')[0], 'pastyche', pastycheObject);
-             $("#background").empty().hide();
-            jade.render($('#background')[0], 'pastyche-background', selectedPhoto);
+            $("#background").empty().hide();
+            jade.render($('#background')[0], 'pastyche-background', pastycheObject.backgroundPhoto);
             $('#background').fadeIn(600);
             if($('#tags-link-element').length ===0){
                 buildTagsLink();
@@ -41,32 +73,7 @@ $('#photo-search-button').on('click', function(e){
     });    
 });
 $(document).on('click',  '#tags-link', function(e){
-    e.preventDefault();
-    console.log("pastycheObject.photo: ", pastycheObject.photo);
-    var photoIDs={};
-
-    photoIDs.IDs = _.pluck(pastycheObject.photo, 'id');
-
-    console.log("photoIDs.IDs ", photoIDs.IDs);
-    var photoTags=[];
-    for(var i=0; i<photoIDs.IDs.length; i++){
-        var queryID={id:photoIDs.IDs[i].toString()}
-        console.log('photoIDs.IDs[i]: ', photoIDs.IDs[i]);
-        $.ajax('/photo-tags',{
-            data:queryID,
-            success: function(data){
-                // console.log("RETURNED:   ", data);
-                // console.log('data.photo.tags.tag: ', data.photo.tags.tag)
-                for(var j=0; j<data.photo.tags.tag.length; j++){
-                    photoTags.push(data.photo.tags.tag[j].raw);
-                }
-                
-            }
-        });
-    }
-    console.log('PHOTO Tags:',photoTags);
-
-    $('#tag-cloud').toggleClass('col-sm-3');
+    $('#tag-cloud').toggle();
     $('#pastyche').toggleClass('col-sm-9');
     $('#pastyche').toggleClass('col-sm-12');
 });

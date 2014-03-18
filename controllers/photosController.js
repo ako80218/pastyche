@@ -6,7 +6,8 @@ module.exports ={
         console.log('req.query.searchTerm: ', req.query.searchTerm);
         var results = flickr.get("photos.search", {"tags":req.query.searchTerm, 
             "sort": "interestingness-desc",
-            "per_page": 20
+            "per_page": 20,
+            "extras": "tags"
 
         }, 
             function(result){

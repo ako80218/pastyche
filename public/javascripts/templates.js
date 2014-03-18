@@ -226,3 +226,43 @@ buf.push('</ul>');
 }
 return buf.join("");
 }
+jade.templates["tag-cloud-template"] = function(locals, attrs, escape, rethrow, merge) {
+attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+var buf = [];
+with (locals || {}) {
+var interp;
+buf.push('<ul class="list-inline">');
+// iterate weights
+;(function(){
+  if ('number' == typeof weights.length) {
+    for (var key = 0, $$l = weights.length; key < $$l; key++) {
+      var val = weights[key];
+
+buf.push('<li class="list-item"><a');
+buf.push(attrs({ 'href':('#'), 'style':("font-size:" + (val) + ""), "class": ('btn') + ' ' + ('btn-default') + ' ' + ('tag') + ' ' + ('tag-btn') }, {"href":true,"style":true}));
+buf.push('>' + escape((interp = key) == null ? '' : interp) + '</a></li>');
+    }
+  } else {
+    for (var key in weights) {
+      var val = weights[key];
+
+buf.push('<li class="list-item"><a');
+buf.push(attrs({ 'href':('#'), 'style':("font-size:" + (val) + ""), "class": ('btn') + ' ' + ('btn-default') + ' ' + ('tag') + ' ' + ('tag-btn') }, {"href":true,"style":true}));
+buf.push('>' + escape((interp = key) == null ? '' : interp) + '</a></li>');
+   }
+  }
+}).call(this);
+
+buf.push('</ul>');
+}
+return buf.join("");
+}
+jade.templates["tags-link-template"] = function(locals, attrs, escape, rethrow, merge) {
+attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+var buf = [];
+with (locals || {}) {
+var interp;
+buf.push('<ul class="nav navbar-nav"><li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags">   </span></a></li></ul>');
+}
+return buf.join("");
+}
