@@ -8,7 +8,7 @@ var passport = require('passport');
 // var twitterAPIKey = global.process.env.TWITTER_API_KEY || ApiValues.twitterAPIKey;
 // var twitterAPISecret = global.process.env.TWITTER_API_SECRET || ApiValues.twitterAPISecret; 
 
-if(FACEBOOK_CLIENT_ID){
+if(global.process.env.FACEBOOK_CLIENT_ID){
   var ApiValues = {
     facebookClientID : FACEBOOK_CLIENT_ID,
     facebookClientSecret : FACEBOOK_CLIENT_SECRET,
