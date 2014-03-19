@@ -1,5 +1,27 @@
 var passport = require('passport');
-var ApiValues = require('../apis.js');
+// var facebookClientID = global.process.env.FACEBOOK_CLIENT_ID || ApiValues.facebookClientID;
+// var facebookClientSecret = global.process.env.FACEBOOK_CLIENT_SECRET || ApiValues.facebookClientSecret;
+// var flickrKey = global.process.env.FLICKR_KEY || ApiValues.flickrKey;
+// var flickrSecret =  global.process.env.FLICKR_SECRET || ApiValues.flickrSecret;
+// var googleClientID =  global.process.env.GOOGLE_CLIENT_ID || ApiValues.googleClientID;
+// var googleClientSecret = global.process.env.GOOGLE_CLIENT_SECRET || ApiValues.googleClientSecret;
+// var twitterAPIKey = global.process.env.TWITTER_API_KEY || ApiValues.twitterAPIKey;
+// var twitterAPISecret = global.process.env.TWITTER_API_SECRET || ApiValues.twitterAPISecret; 
+
+if(FACEBOOK_CLIENT_ID){
+  var ApiValues {
+    facebookClientID : FACEBOOK_CLIENT_ID,
+    facebookClientSecret : FACEBOOK_CLIENT_SECRET,
+    googleClientID : GOOGLE_CLIENT_ID,
+    googleClientSecret : GOOGLE_CLIENT_SECRET,
+    twitterAPIKey : TWITTER_API_KEY,
+    twitterAPISecret: TWITTER_API_SECRET
+  }
+} else {
+
+  var ApiValues = require('../apis.js');
+}
+
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook'). Strategy;
 var TwitterStrategy = require('passport-twitter'). Strategy;
