@@ -10,12 +10,12 @@ var passport = require('passport');
 
 if(global.process.env.FACEBOOK_CLIENT_ID){
   var ApiValues = {
-    facebookClientID : FACEBOOK_CLIENT_ID,
-    facebookClientSecret : FACEBOOK_CLIENT_SECRET,
-    googleClientID : GOOGLE_CLIENT_ID,
-    googleClientSecret : GOOGLE_CLIENT_SECRET,
-    twitterAPIKey : TWITTER_API_KEY,
-    twitterAPISecret: TWITTER_API_SECRET
+    facebookClientID : global.process.env.FACEBOOK_CLIENT_ID,
+    facebookClientSecret : global.process.env.FACEBOOK_CLIENT_SECRET,
+    googleClientID : global.process.env.GOOGLE_CLIENT_ID,
+    googleClientSecret : global.process.env.GOOGLE_CLIENT_SECRET,
+    twitterAPIKey : global.process.env.TWITTER_API_KEY,
+    twitterAPISecret : global.process.env.TWITTER_API_SECRET
   };
 } else {
 
