@@ -41,7 +41,7 @@ passport.deserializeUser(function(userid, done){
 passport.use(new GoogleStrategy({
     clientID: ApiValues.googleClientID,
     clientSecret: ApiValues.googleClientSecret,
-    callbackURL: "http://localhost:1337/oauth2callback"
+    callbackURL: "/oauth2callback"
   },
   function(accessToken, refreshToken, profile, done) {
     // console.log("profile.id: ", profile.id);
@@ -66,7 +66,7 @@ passport.use(new GoogleStrategy({
 passport.use(new FacebookStrategy({
     clientID:ApiValues.facebookClientID,
     clientSecret: ApiValues.facebookClientSecret,
-    callbackURL: 'http://localhost:1337/facebook/callback'
+    callbackURL: '/facebook/callback'
 },
   function(accessToken, refreshToken, profile, done){
     // console.log("profile.name.givenName: ", profile.name.givenName);
@@ -91,7 +91,7 @@ passport.use(new FacebookStrategy({
 passport.use(new TwitterStrategy({
     consumerKey:ApiValues.twitterAPIKey,
     consumerSecret: ApiValues.twitterAPISecret,
-    callbackURL: 'http://127.0.0.1:1337/auth/twitter/callback'
+    callbackURL: '/auth/twitter/callback'
 },
   function(token, tokenSecret, profile, done){
 
