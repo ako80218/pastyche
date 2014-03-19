@@ -1,7 +1,10 @@
 var mongoose = require('mongoose');
 var pastycheSchema = new mongoose.Schema({
-    pastyche: Array,
-    backgroundImage: {}
+    title: String,
+    description: String,
+    forgroundImages: Array,
+    backgroundImage: {},
+    tags: Array
 });
 
 var PastycheModel = module.exports = mongoose.model('Pastyche', pastycheSchema);

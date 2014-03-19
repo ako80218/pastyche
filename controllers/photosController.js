@@ -16,17 +16,19 @@ module.exports ={
         // console.log("results: ", results);
         
     },
-    tagLookUp: function(req, res){
-        console.log("REQ.QUERY: ", req.query);
-        var results = flickr.get("tags.getListPhoto", {"photo_id":req.query.id},
-            function(result){
-                res.send(result);
-            });
-    },
+    // tagLookUp: function(req, res){
+    //     console.log("REQ.QUERY: ", req.query);
+    //     var results = flickr.get("tags.getListPhoto", {"photo_id":req.query.id},
+    //         function(result){
+    //             res.send(result);
+    //         });
+    // },
     savePastyche: function(req, res){
-        console.log("req.user:  ", req.user);
+        // console.log("req.user:  ", req.user);
         var pastyche = {};
-        pastyche.pastyche=req.body.savedPastycheData;
+        // console.log("req.body.savedPastycheData", req.body.savedPastycheData);
+        pastyche=req.body.savedPastycheData;
+        // console.log("pastyche:  ", pastyche);
         var savedPastyche= new PastycheModel(pastyche);
         console.log('savedPastyche: ', savedPastyche);
         savedPastyche.save(function(err, doc){
@@ -46,5 +48,22 @@ module.exports ={
             );
 
         });
+    },
+    pastycheLookUp: function(req, res){
+        console.log("req.user.pastyches:  ", req.user.pastyches);
+        PastycheModel.find({_id:req.user.pastyches}, function(err, docs){
+            if(err){
+                console.log("ERR IN SAVING!!");
+            }
+            console.log("docs.title: ", docs.title);
+            // res.render('profile.jade', {
+            //     title: 'Pastyche',
+            //     user: req.user,
+            //     pastycheTitles:docs.title
+
+            // });
+            res.send(docs);
+        });
+
     }
 };

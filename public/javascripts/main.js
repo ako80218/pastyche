@@ -21,10 +21,13 @@ $('#tag-cloud').hide();
             return tagWeights;
 }
     var pastycheObject ={};
+    var savedPastycheObject ={};
 ///////////////////////////// VIEW
 //This function assembles the tags link element and places it in the nav bar        
     var buildTagsLink = function(){
-         $('#navbar-header').append('<ul id="tags-link-element" class="nav navbar-nav"><li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags"></span></a></li>');
+         $('#navbar-header').append('<ul id="tags-link-element" class="nav navbar-nav">\
+            <li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags"></span></a></li>\
+            <li><a id="save-pastyche-modal" class="main-nav-link" href="/save">Save Pastyche</a></li></ul>');
     };
     
 //////////////////////////// CONTROL
@@ -58,6 +61,7 @@ $('#photo-search-button').on('click', function(e){
             tagTemplateObj.weights=setTagWeights(tagArray);
             tagTemplateObj.tags=_.keys(tagTemplateObj.weights);
             // $('#tag-cloud').hide();
+            console.log("tagTemplateObj: ", tagTemplateObj);
             jade.render($('#tag-cloud')[0], 'tag-cloud-template', tagTemplateObj);
             jade.render($('#pastyche')[0], 'pastyche', pastycheObject);
             $("#background").empty().hide();
@@ -68,7 +72,11 @@ $('#photo-search-button').on('click', function(e){
             }else{
                 $('#tags-link-element').remove();
                 buildTagsLink();
-            }  
+            }
+            // console.log("pastycheObject: ", pastycheObject);  
+            savedPastycheObject.forgroundImages = pastycheObject.photo;
+            savedPastycheObject.backgroundImage=pastycheObject.backgroundPhoto;
+            savedPastycheObject.tags=pastycheObject.allTags;
         }
     });    
 });
@@ -77,13 +85,25 @@ $(document).on('click',  '#tags-link', function(e){
     $('#pastyche').toggleClass('col-sm-9');
     $('#pastyche').toggleClass('col-sm-12');
 });
-
-    $('#save-pastyche').on('click', function(e){
+$(document).on('click', '#save-pastyche-modal', function(e){
         e.preventDefault();
-        console.log("SAVE CLICKED");
-        $.ajax('/save', {
-            type:'post',
-            data: {savedPastycheData : pastycheArray}
-        });
+        $('#pastyche-save-modal').modal();
+    });
+
+$(document).on('click', '#save-pastyche', function(e){
+    e.preventDefault();
+    savedPastycheObject.title=$('#pastyche-title').val();
+    savedPastycheObject.description=$('#pastyche-description').val();
+    console.log('savedPastycheObject', savedPastycheObject);
+    $.ajax('/save', {
+                type:'post',
+                data: {savedPastycheData : savedPastycheObject},
+                success: function(data){
+                    $('#save-pastyche-footer').prepend('<p>Pastyche Saved!</p>');
+                    $('#save-pastyche').remove();
+                    $('#save-pastyche-footer').append('<a class="btn btn-default modal-save" href="#" data-dismiss="modal">Close</a> ');
+                }
     });
 });
+});
+

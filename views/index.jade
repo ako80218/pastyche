@@ -2,5 +2,23 @@ extends layout
 
 block content
     .row
-        #tag-cloud.col-sm-3
-        #pastyche.col-sm-12
+        #pastyche-save-modal.modal.fade.modal-save-back(tabindex="-1",role="dialog",aria-labelledby="myModalLabel",aria-hidden="true", aria-describedby="saving a pastyche")
+            .modal-dialog.modal-dialogue-save
+                .modal-content.modal-save-content
+                    .modal-header.modal-save-header
+                        button.close.close-save(data-dismiss="modal", aria-hidden="true") &times;
+                        h4.modal-title Save This Pastyche
+                        form#save-pastyche-form.form-horizontal(role="form")
+                            .form-group
+                                label.col-sm-2.control-label(for="pastyche-title") Title
+                                .col-sm-10
+                                    input#pastyche-title.form-control.modal-save(type="text", placeholder="Title")
+                            .form-group
+                                label.col-sm-2.control-label(for="pastyche-description") Description
+                                .col-sm-10
+                                    textarea#pastyche-description.form-control.modal-save(rows="3")
+                    .modal-footer#save-pastyche-footer
+                        .form-group
+                            a#save-pastyche.btn.btn-default.modal-save(href='/save') Save
+        #tag-cloud.col-sm-3.tag-cloud-back
+        #pastyche.col-sm-12.pastyche-forground

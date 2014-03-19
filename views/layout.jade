@@ -31,9 +31,7 @@ html
                                 li
                                     p.navbar-text Hey #{user.userDisplayName} !
                                 li
-                                    a.main-nav-link(href='/profile/#{user.userSlug}') My Profile                        
-                                li
-                                    a#save-pastyche.main-nav-link(href='/save') Save Pastyche
+                                    a.main-nav-link(href='/profile/#{user.userSlug}/pastyches') My Pastyches                       
                                 li
                                     a.main-nav-link(href='/logout') Logout
                             else

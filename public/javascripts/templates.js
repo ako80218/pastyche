@@ -262,7 +262,7 @@ attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow |
 var buf = [];
 with (locals || {}) {
 var interp;
-buf.push('<ul class="nav navbar-nav"><li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags">   </span></a></li></ul>');
+buf.push('<ul class="nav navbar-nav"><li><a id="tags-link" href="#"><span class="glyphicon glyphicon-tags"> </span></a></li><li><a id="save-pastyche" href="/save" class="main-nav-link">Save Pastyche  </a></li></ul>');
 }
 return buf.join("");
 }
