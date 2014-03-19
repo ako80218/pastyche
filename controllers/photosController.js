@@ -1,6 +1,7 @@
 var UserModel = require('../models/userModel.js');
 var PastycheModel = require('../models/pastycheModel.js');
 var flickr= require('../config/flickr.js');
+var underscore = require('underscore');
 module.exports ={
     search: function(req, res){
         console.log('req.query.searchTerm: ', req.query.searchTerm);
@@ -55,6 +56,7 @@ module.exports ={
             if(err){
                 console.log("ERR IN SAVING!!");
             }
+            var profileArray =underscore._.map(docs, function(obj){return underscore._.pick(obj, 'title', 'description', 'backgroundImage')});
             // console.log("docs.title: ", docs.title);
             // res.render('profile.jade', {
             //     title: 'Pastyche',
@@ -62,7 +64,8 @@ module.exports ={
             //     pastycheTitles:docs.title
 
             // });
-            res.send(docs);
+            console.log('(profileArray):  ', profileArray);
+            res.send(profileArray);
         });
 
     }
