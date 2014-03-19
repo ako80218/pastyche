@@ -15,11 +15,25 @@ var mongoose = require('mongoose');
 var stylus = require('stylus');
 var nib = require("nib");
 // mongoose.connect('mongodb://localhost/pastyche');
-if (global.process.env.MONGOHQ_URL){
-  mongoose.connect(global.process.env.MONGOHQ_URL)
-}else{
-  mongoose.connect('mongodb://localhost/pastyche');
-}
+// if (global.process.env.MONGOHQ_URL){
+//   mongoose.connect(global.process.env.MONGOHQ_URL)
+// }else{
+//   mongoose.connect('mongodb://localhost/pastyche');
+// }
+
+var mongo_url = global.process.env.MONGOHQ_URL || 'mongodb://localhost/pastyche'
+mongoose.connect(mongo_url);
+
+
+var facebookClientID = global.process.env.FACEBOOK_CLIENT_ID || ApiValues.facebookClientID;
+var facebookClientSecret = global.process.env.FACEBOOK_CLIENT_SECRET || ApiValues.facebookClientSecret;
+var flickrKey = global.process.env.FLICKR_KEY || ApiValues.flickrKey;
+var flickrSecret =  global.process.env.FLICKR_SECRET || ApiValues.flickrSecret;
+var googleClientID =  global.process.env.GOOGLE_CLIENT_ID || ApiValues.googleClientID;
+var googleClientSecret = global.process.env.GOOGLE_CLIENT_SECRET || ApiValues.googleClientSecret;
+var twitterAPIKey = global.process.env.TWITTER_API_KEY || ApiValues.twitterAPIKey;
+var twitterAPISecret = global.process.env.TWITTER_API_SECRET || ApiValues.twitterAPISecret;
+  
 var indexController =require('./controllers/indexController.js');
 var authController = require('./controllers/authController.js');
 var userController = require('./controllers/userController.js');
