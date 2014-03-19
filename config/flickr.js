@@ -2,7 +2,7 @@ if (global.process.env.FLICKR_KEY){
     var ApiValues = {
         flickrKey: global.process.env.FLICKR_KEY ,
         flickrSecret: global.process.env.FLICKR_SECRET 
-    }
+    };
 } else{
    var ApiValues = require('../apis.js'); 
 }

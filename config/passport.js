@@ -9,14 +9,14 @@ var passport = require('passport');
 // var twitterAPISecret = global.process.env.TWITTER_API_SECRET || ApiValues.twitterAPISecret; 
 
 if(FACEBOOK_CLIENT_ID){
-  var ApiValues {
+  var ApiValues = {
     facebookClientID : FACEBOOK_CLIENT_ID,
     facebookClientSecret : FACEBOOK_CLIENT_SECRET,
     googleClientID : GOOGLE_CLIENT_ID,
     googleClientSecret : GOOGLE_CLIENT_SECRET,
     twitterAPIKey : TWITTER_API_KEY,
     twitterAPISecret: TWITTER_API_SECRET
-  }
+  };
 } else {
 
   var ApiValues = require('../apis.js');
