@@ -14,7 +14,12 @@ var ApiValues =require('./apis.js');
 var mongoose = require('mongoose');
 var stylus = require('stylus');
 var nib = require("nib");
-mongoose.connect('mongodb://localhost/pastyche');
+// mongoose.connect('mongodb://localhost/pastyche');
+if (global.process.env.MONGOHQ_URL){
+  mongoose.connect(global.process.env.MONGOHQ_URL)
+}else{
+  mongoose.connect('mongodb://localhost/pastyche');
+}
 var indexController =require('./controllers/indexController.js');
 var authController = require('./controllers/authController.js');
 var userController = require('./controllers/userController.js');

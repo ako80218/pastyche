@@ -51,11 +51,11 @@ module.exports ={
     },
     pastycheLookUp: function(req, res){
         console.log("req.user.pastyches:  ", req.user.pastyches);
-        PastycheModel.find({_id:req.user.pastyches}, function(err, docs){
+        PastycheModel.find({_id:{$in:req.user.pastyches}}, function(err, docs){
             if(err){
                 console.log("ERR IN SAVING!!");
             }
-            console.log("docs.title: ", docs.title);
+            // console.log("docs.title: ", docs.title);
             // res.render('profile.jade', {
             //     title: 'Pastyche',
             //     user: req.user,
