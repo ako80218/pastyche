@@ -226,6 +226,35 @@ buf.push('</ul>');
 }
 return buf.join("");
 }
+jade.templates["slides-home"] = function(locals, attrs, escape, rethrow, merge) {
+attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+var buf = [];
+with (locals || {}) {
+var interp;
+// iterate photos            
+;(function(){
+  if ('number' == typeof photos            .length) {
+    for (var $index = 0, $$l = photos            .length; $index < $$l; $index++) {
+      var image = photos            [$index];
+
+buf.push('<div><img');
+buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '_b.jpg'), 'data-id':('' + (image.id) + ''), "class": ('background-image') }, {"src":true,"data-id":true}));
+buf.push('/></div>');
+    }
+  } else {
+    for (var $index in photos            ) {
+      var image = photos            [$index];
+
+buf.push('<div><img');
+buf.push(attrs({ 'src':('http://farm' + (image.farm) + '.staticflickr.com/' + (image.server) + '/' + (image.id) + '_' + (image.secret) + '_b.jpg'), 'data-id':('' + (image.id) + ''), "class": ('background-image') }, {"src":true,"data-id":true}));
+buf.push('/></div>');
+   }
+  }
+}).call(this);
+
+}
+return buf.join("");
+}
 jade.templates["tag-cloud-template"] = function(locals, attrs, escape, rethrow, merge) {
 attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
 var buf = [];

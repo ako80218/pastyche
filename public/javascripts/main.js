@@ -1,6 +1,21 @@
 var test;
 $(function(){
 $('#tag-cloud').hide();
+
+var  loopingBackground = function(){    
+    // $('#pastiche-background').hide();
+    //prevent scrollbars
+    $('body').css('overflow-y', 'hidden');
+    $("#background > div:gt(0)").hide();
+    setInterval(function() { 
+      $('#background > div:first')
+        .fadeOut(2000)
+        .next()
+        .fadeIn(2000)
+        .end()
+        .appendTo('#background');
+    },  4000);
+};
     // console.log("LOADED!");
     // 
     ///////////////////////////// MODEL
@@ -31,7 +46,15 @@ $('#tag-cloud').hide();
     };
     
 //////////////////////////// CONTROL
-    
+
+ $.ajax('/random-background', {
+            success:function(data){ 
+                var loopingObject = {photos:data.photo};
+                jade.render($('#background')[0], 'slides-home', loopingObject);
+                console.log("loopingObject: ", loopingObject);
+                loopingBackground();
+            }
+});  
 $('#photo-search-button').on('click', function(e){
     e.preventDefault();
     var searchTerm = $(this).siblings('div').children('#photo-search-input').val();

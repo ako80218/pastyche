@@ -66,6 +66,7 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', indexController.index);
+app.get('/random-background', photosController.randomBackground);
 app.get('/login', authController.login);
 app.get('/register', authController.register);
 app.get('/user/:id', authController.ensureAuthenticated, userController.userProfile);

@@ -3,6 +3,20 @@ var PastycheModel = require('../models/pastycheModel.js');
 var flickr= require('../config/flickr.js');
 var underscore = require('underscore');
 module.exports ={
+    randomBackground: function(req,res){
+        var results = flickr.get("photos.search", {"tags":"landscape", 
+            "sort": "interestingness-desc",
+            "per_page": 20
+
+        },  function(result){
+            res.send(result.photos);
+        });
+        // res.render('index.jade',{
+        //     title:"Pastyche",
+
+        // })
+
+    },
     search: function(req, res){
         console.log('req.query.searchTerm: ', req.query.searchTerm);
         var results = flickr.get("photos.search", {"tags":req.query.searchTerm, 
